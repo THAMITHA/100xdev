@@ -1,7 +1,6 @@
-const startTime = Date.now(); 
-
-setTimeout(() => {
-  const endTime = Date.now(); 
-  const elapsedTime = endTime - startTime; 
-  console.log(`Elapsed time: ${elapsedTime} ms`);
-}, 1000);
+let startDate = Date.now()
+setTimeout(()=>{
+    let endDate = Date.now();
+    let elapsedTime = endDate - startDate
+    console.log(`elapsedtime: ${elapsedTime}ms`)
+}, 1000)
