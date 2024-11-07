@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 
 app.use(express.json())
-mongoose.connect('mongodb+srv://koala5171:ZCH5nYoe4UWnHHL4@cluster0.j1dmk.mongodb.net/userappnew');
+mongoose.connect('mongodb+srv://koala5171:dvfddfgdfgdfdfdfbfvbfb.j1dmk.mongodb.net/userappnew');
 
 const User = mongoose.model('Users', { name: String, email: String, password: String});
 app.post("/signup", async function(req, res){
@@ -27,3 +27,4 @@ app.post("/signup", async function(req, res){
     })
 })
 
+app.listen(3000)
