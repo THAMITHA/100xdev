@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://koala5171:EbQjrycm1fjH3oR5@cluster0.j1dmk.mongodb.net/');
+mongoose.connect('put urlnow its expired');
 
 // Define schemas
 const AdminSchema = new mongoose.Schema({
