@@ -1,28 +1,31 @@
 <html>
     <body>
-        <div id="parentButton"></div>
+        <div id="buttonParent"></div>
     </body>
     <script>
         let state = {
-            count:0
+            count: 0
         }
-        function buttonPress(){
+
+        function onButtonPress(){
             state.count++
             buttonComponentReRender()
         }
-        
+
         function buttonComponentReRender(){
-            document.getElementById('parentButton').innerHTML= ""
+            document.getElementById('buttonParent').innerHTML = ""
             const component = buttonComponent(state.count)
-            document.getElementById('parentButton').appendChild(component)
+            document.getElementById('buttonParent').appendChild(component)
         }
 
         function buttonComponent(count){
             const button = document.createElement('button')
-            button.innerHTML=`Counter ${count}`
-            button.setAttribute('onclick', 'buttonPress()')
+            button.innerHTML = `Counter ${count}`
+            button.setAttribute('onclick', 'onButtonPress()')
             return button
         }
+
         buttonComponentReRender()
+
     </script>
 </html>
