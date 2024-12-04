@@ -1,17 +1,11 @@
-function App({InlineComponent}){
+function App(){
   return <div>
-    <CardWrapper InlineComponent={<TextComponent/>}/>
-  </div>  
-}
-
-function CardWrapper({InlineComponent}){
-  return <div style={{border: "2px solid black"}}>{InlineComponent}</div>
-}
-
-function TextComponent(){
-  return <div>
-    hi there
+    <CardWrapper>Hi Their</CardWrapper>
   </div>
 }
 
-export default App;
+function CardWrapper({children}){
+  return <div style={{border: "2px solid black"}}>{children}</div>
+}
+
+export default App
