@@ -1,23 +1,17 @@
-import {memo, useState} from 'react'
+import {useState, memo} from 'react'
 function App(){
   const [count, setCount] = useState(0)
-  function logSomething(){
-    console.log('child clicked')
-  }
-  return <>
-  <ButtonComponent inputFunction= {logSomething}/>
-  <button onClick={()=>{
+  return <div>
+  <ButtonComponent/>
+  <button onClick={function(){
     setCount(count+1)
   }}>Counter {count}</button>
-  </>
-}
-
-const ButtonComponent= memo(({inputFunction})=>{
-  console.log('child render')
-
-  return <div>
-    <button onClick={inputFunction}>Button Clicked</button>
   </div>
+}
+const ButtonComponent= memo(function(){
+  console.log('child render')
+  return <>
+  <button>click me</button>
+  </>
 })
-
 export default App
