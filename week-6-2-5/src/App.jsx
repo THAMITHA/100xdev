@@ -1,40 +1,16 @@
-import {useEffect, useState, memo, useCallback} from 'react'
+import { useEffect, useRef, useState } from "react"
+
 function App(){
-    const [bankData, setBankData] = useState({})
-    const [exchang1Data, setExchange1Data] = useState({})
-    const [exchang2Data, setExchange2Data] = useState({})
+    const [incomeTax, setIncomeTax] = useState(20000)
+    const divRef=useRef()
 
     useEffect(()=>{
-        setTimeout(()=>{setExchange1Data({returns:100})})
+        setTimeout(()=>{
+            divRef.current.innerHTML=10
+        },1000)
     },[])
-    
-    useEffect(()=>{
-        setTimeout(()=>{setExchange2Data({returns:100})})
-    }, [])
-
-    useEffect(()=>{
-        setTimeout(()=>{setBankData({returns:100})},3000)
-    },[])
-    const calculateCrypto = useCallback(function (){
-        return  exchang1Data.returns+ exchang2Data.returns
-    },[exchang1Data, exchang2Data])
-    
     return <>
-       <CryptoCurrencyCalculator calculateCryptoFunc={calculateCrypto}></CryptoCurrencyCalculator> 
-       <Dummy></Dummy>
-    </>
-}
-
-const CryptoCurrencyCalculator=memo(function({calculateCryptoFunc}){
-    console.log('child component re-render')
-    return <>
-    the income tax of CryptoCurrencyCalculator is {calculateCryptoFunc()}
-    </>
-})
-
-function Dummy(){
-    return<>
-        hi
-    </>
+    hi thier the income tax <div ref={divRef}>{incomeTax}</div></>
+    
 }
 export default App
