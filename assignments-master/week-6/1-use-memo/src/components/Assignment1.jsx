@@ -7,13 +7,14 @@ export function Assignment1() {
     const [input, setInput] = useState(0);
     // Your solution starts here
     // Your solution ends here
-    const expensiveRes= useMemo(()=>{
-        let expensiveValue = 1; 
-        for(let i=1;i<=input;i++){
-            expensiveValue = expensiveValue * i
+    const expensiveRes = useMemo(()=>{
+        let value = 1
+        for(let i=1; i<=input; i++){
+            value = value * i
         }
-        return expensiveValue
+        return value
     },[input])
+    
     return (
         <div>
             <input 
