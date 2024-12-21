@@ -1,17 +1,33 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './App.css'
+import { CountContext } from './context'
 
 function App() {
   const [count, setCount] = useState(0)
   return (
     <div>
-      <Count count={count}/>
-      <Buttons count={count} setCount={setCount}/>
+      <CountContext.Provider value={count}>
+        <Count setCount={setCount}/>
+      </CountContext.Provider>
     </div>
   )
 }
 
-function Buttons({count, setCount}){
+function Count({setCount}){
+  return <div>
+  <CountRenderer />
+  <Buttons setCount={setCount}/>
+  </div>
+}
+
+function CountRenderer(){
+  const count = useContext(CountContext)
+  return <div>
+    {count}
+  </div>
+}
+function Buttons({setCount}){
+  const count = useContext(CountContext)
   return <div>
     <button onClick={()=>{
       setCount(count+1)
@@ -20,10 +36,6 @@ function Buttons({count, setCount}){
       setCount(count-1)
     }}>decrease</button>
   </div>
-}
-
-function Count({count}){
-  return <div>{count}</div>
 }
 
 export default App
