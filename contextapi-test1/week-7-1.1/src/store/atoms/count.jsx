@@ -1,4 +1,4 @@
-import {atom} from 'recoil'
+import {atom, selector} from 'recoil'
 
 export const countAtom = atom({
     key: "countAtom",
@@ -6,9 +6,9 @@ export const countAtom = atom({
 })
 
 export const evenSelector = selector({
-    name: "evenSelector",
+    key: "evenSelector",
     get: ({get})=>{
       const count = get(countAtom)
-      return count % 2  
+      return count % 2 == 0 
     }
 })
