@@ -23,7 +23,7 @@ function MainApp(){
     <button>Messaging {messagingNotificationAtom}</button>
     <button>Notification {notificationJobAtom}</button>
     <button onClick={()=>{
-      setMessagenotificationJobAtom(c=>c+1)
+      setMessagenotificationJobAtom(notificationJobAtom+1)
     }}>me</button>
     </>
   )
