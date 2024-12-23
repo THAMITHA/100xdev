@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { jobsAtom, networkAtom, notificationAtom, messagingAtom } from './atom'
-import { RecoilRoot, useRecoilValue} from 'recoil'
+import { RecoilRoot, useRecoilState, useRecoilValue} from 'recoil'
 
 function App() {
   return <RecoilRoot>
@@ -13,7 +13,7 @@ function MainApp(){
   const networkNotificationCount = useRecoilValue(networkAtom)
   const jobsNotificationAtom = useRecoilValue(jobsAtom)
   const messagingNotificationAtom = useRecoilValue(messagingAtom)
-  const  notificationJobAtom = useRecoilValue(notificationAtom)
+  const [notificationJobAtom, setMessagenotificationJobAtom] = useRecoilState(notificationAtom)
   const finalValue = networkNotificationCount>100 ? "99+" : notificationJobAtom
   return (
     <>
@@ -22,7 +22,9 @@ function MainApp(){
     <button>Jobs {jobsNotificationAtom}</button>
     <button>Messaging {messagingNotificationAtom}</button>
     <button>Notification {notificationJobAtom}</button>
-    <button>me</button>
+    <button onClick={()=>{
+      setMessagenotificationJobAtom(c=>c+1)
+    }}>me</button>
     </>
   )
 }
