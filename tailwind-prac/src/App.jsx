@@ -1,18 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { RevenueCard } from './components/RevenueCard'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div style= {{display: "flex", justifyContent: 'space-between'}}>
-        <div style={{backgroundColor: "red"}}>hi</div>
-        <div style={{backgroundColor: "green"}}>hi</div>
-        <div style={{backgroundColor: "yellow"}}>hi</div>
-      </div>
+      <RevenueCard title={"Amount Pending"} amount={"92,312,20"} orderCount={13}/>
     </>
   )
 }
