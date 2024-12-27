@@ -1,27 +1,31 @@
 import { useEffect, useState } from "react"
+import { Component } from "react"
 
 function App(){
   const [render, setRender] = useState(true)
+
   useEffect(()=>{
     setInterval(()=>{
-      setRender(r=> !r)
-    },1000)
+      setRender(r=>!r)
+    }, 5000)
   },[])
-  return<>
-    {render? <MyComponent/>: <div></div>}
-  </>
-}
 
-function MyComponent(){
-  useEffect(()=>{
-    console.error('component mounted')
-    return()=>{
-      console.log('component unmounted')
-    }
-  },[])
-  return <div>
-    here is the components
-  </div>
+  return (
+  <>
+    {render? <MyComponent/>: <div></div>}
+  </>)
+}
+class MyComponent extends Component{
+  componentDidMount(){
+    console.log("component mounted")
+  }
+  componentWillUnmount(){
+    console.log("unmounted")
+  }
+
+  render(){
+    return <div>hi there</div>
+  }
 }
 
 export default App
