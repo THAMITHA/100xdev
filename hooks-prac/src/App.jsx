@@ -1,29 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import './App.css'
+import { useEffect, useState } from "react"
 
-function App() {
-  const [render, setRender] = useState(true) 
+function App(){
+  const [render, setRender] = useState(true)
   useEffect(()=>{
-    setTimeout(()=>{
-      setRender(false)
+    setInterval(()=>{
+      setRender(r=> !r)
     },1000)
   },[])
-  return (
-    <>
-      {render? <MyComponent/>: <div></div>}
-    </>
-  )
+  return<>
+    {render? <MyComponent/>: <div></div>}
+  </>
 }
 
 function MyComponent(){
   useEffect(()=>{
-    console.error("component mounted")
+    console.error('component mounted')
     return()=>{
-      console.log("component unmounted")
+      console.log('component unmounted')
     }
-  }, [])
+  },[])
   return <div>
-    From inside my component
+    here is the components
   </div>
 }
 
