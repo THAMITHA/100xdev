@@ -1,31 +1,45 @@
-import { useEffect, useState } from "react"
-import { Component } from "react"
+import { useEffect, useState } from "react";
+import axios from 'axios'
 
-function App(){
-  const [render, setRender] = useState(true)
 
+function useTodos(n){
+  const [todos, setTodos] = useState([])
+  const [loading, setLoading] = useState(true)
   useEffect(()=>{
-    setInterval(()=>{
-      setRender(r=>!r)
-    }, 5000)
-  },[])
-
-  return (
-  <>
-    {render? <MyComponent/>: <div></div>}
-  </>)
+    const value = setInterval(()=>{
+      axios.get("https://sum-server.100xdevs.com/todos")
+    .then(res=>{
+      setTodos(res.data.todos)
+      setLoading(false)
+    })
+    }, n* 10000)
+    axios.get("https://sum-server.100xdevs.com/todos")
+    .then(res=>{
+      setTodos(res.data.todos)
+      setLoading(false)
+    })
+    return ()=>{
+      clearInterval(value)
+    }
+  },[n])
+  return {todos, loading}
 }
-class MyComponent extends Component{
-  componentDidMount(){
-    console.log("component mounted")
+function App(){
+  const todos = useTodos(5)
+  if(loading){
+    <div>loading...</div>
   }
-  componentWillUnmount(){
-    console.log("unmounted")
-  }
-
-  render(){
-    return <div>hi there</div>
-  }
+  return(
+    <>{
+      todos.map(todo=><Track todo={todo}/>)
+    }</>
+  )
 }
-
+function Track({todo}){
+  return <div>
+    {todo.title}
+    <br/>
+    {todo.description}
+  </div>
+}
 export default App
