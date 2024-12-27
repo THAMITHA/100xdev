@@ -24,16 +24,27 @@ function useTodos(n){
   },[n])
   return {todos, loading}
 }
+
+function useIsOnline(){
+  const [isOnline, setIsOnline] = useState(window.navigator.onLine) 
+
+  useEffect(()=>{
+    window.addEventListener('online',()=>{
+      setIsOnline(true)
+    })
+
+    window.addEventListener('offline', ()=>{
+      setIsOnline(false)
+    })
+  },[])
+  return isOnline
+}
 function App(){
-  const todos = useTodos(5)
-  if(loading){
-    <div>loading...</div>
+  const isOnline = useIsOnline()
+  if(isOnline){
+    return "you are online yay!"
   }
-  return(
-    <>{
-      todos.map(todo=><Track todo={todo}/>)
-    }</>
-  )
+  return "you are offline, please connect"
 }
 function Track({todo}){
   return <div>
