@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
+import { useIsOnline } from "./hooks/userOnline";
 
 
 function useTodos(n){
@@ -25,20 +26,6 @@ function useTodos(n){
   return {todos, loading}
 }
 
-function useIsOnline(){
-  const [isOnline, setIsOnline] = useState(window.navigator.onLine) 
-
-  useEffect(()=>{
-    window.addEventListener('online',()=>{
-      setIsOnline(true)
-    })
-
-    window.addEventListener('offline', ()=>{
-      setIsOnline(false)
-    })
-  },[])
-  return isOnline
-}
 function App(){
   const isOnline = useIsOnline()
   if(isOnline){
