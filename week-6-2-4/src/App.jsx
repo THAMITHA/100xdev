@@ -1,20 +1,20 @@
-import {useState, memo} from 'react'
-function App(){
-  const [count, setCount] = useState(0)
-  function inputFunction(){
-    console.log('hi thier')
-  }
-  return <div>
-  <ButtonComponent initialFunction = {inputFunction}/>
-  <button onClick={function(){
-    setCount(count+1)
-  }}>Counter {count}</button>
-  </div>
+import {useState, useEffect} from 'react';
+
+function useTodos(){
+  const [todos, setTodos] = useState([])
+  useEffect(()=>{
+    axios.get("")
+    .then((res)=>{
+      setTodos(res.data.todos)
+    })
+  },[])
+  return todos
 }
-const ButtonComponent= memo(function({initialFunction}){
-  console.log('child render')
+function App(){
+  const todos = useTodos()
   return <>
-  <button>click me</button>
+  {todos}
   </>
-})
+}
+
 export default App

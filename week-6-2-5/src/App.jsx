@@ -1,16 +1,15 @@
-import { useEffect, useRef, useState } from "react"
-
+import { useState, useEffect, useRef } from "react";
 function App(){
+    const divRef = useRef()
     const [incomeTax, setIncomeTax] = useState(20000)
-    const divRef=useRef()
-
     useEffect(()=>{
         setTimeout(()=>{
-            divRef.current.innerHTML=10
-        },1000)
+            divRef.current.innerHTML = 10
+        },3000)
     },[])
     return <>
-    hi thier the income tax <div ref={divRef}>{incomeTax}</div></>
-    
+    hi thier your income tax is <div ref={divRef}>{incomeTax}</div>
+    </>
 }
+
 export default App

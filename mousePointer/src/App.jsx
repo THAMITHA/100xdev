@@ -1,27 +1,20 @@
-import { useEffect, useState } from "react";
-
-const useMousePointer = () => {
+import {useState, useEffect} from 'react'
+const useMousePointer=()=>{
   const [position, setPosition] = useState({x:0, y:0})
-
-  const handleMouseMove=(e)=>{
-    setPosition({x: e.clientX, y: e.clientY})
+  const handleMouseChange=(e)=>{
+    setPosition({x:e.clientX, y:e.clientY})
   }
-
   useEffect(()=>{
-    window.addEventListener('mousemove', handleMouseMove)
-    return ()=>{
-      window.removeEventListener('mousemove', handleMouseMove)
-    }
+    window.addEventListener('mousemove',handleMouseChange)
+    return ()=>{window.removeEventListener('mousemove', handleMouseChange)}
   },[])
   return position
 }
 function App(){
   const mousePointer = useMousePointer()
-  return( <>
-  your position is {mousePointer.x} {mousePointer.y}
+  return (<>
+  your mouse position is {mousePointer.x}{mousePointer.y}
   </>)
 }
 
 export default App
-
-

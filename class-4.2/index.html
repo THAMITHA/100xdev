@@ -10,7 +10,7 @@
                 const parent = document.getElementById(todoId)
                 parent.children[2].innerHTML = "Done!" 
             }
-
+            //react dom does
             function createChild(title, description, id){
                 const child = document.createElement("div")
                 const firstGrandParent = document.createElement("div")
@@ -39,7 +39,7 @@
                 description: 'go to gym from 5 to 7',
                 id: 1
             }])
-
+            //React does
             window.setInterval(async function(){
                 const res = await fetch("https://sum-server.100xdevs.com/todos")
                 const json = await res.json()
