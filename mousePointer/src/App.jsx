@@ -1,21 +1,25 @@
-import {useEffect, useState} from 'react'
-function useInterval(fn, timeout){
-  const value=useEffect(()=>{
-    setInterval(()=>{
-      fn()
-    },timeout)
+import React, {useState, useEffect} from 'react'
+
+function useDebounce(value, timeout){
+  const [debounceValue, setDebounceValue] = useState(value)
+ useEffect(()=>{
+    let timeoutnumber = setTimeout(()=>{
+      setDebounceValue(value)
+    }, timeout)
     return ()=>{
-      clearInterval(value)
+      clearInterval(timeoutnumber)
     }
-  },[])
+  },[value])
+  return debounceValue
 }
 function App(){
-  const [count, setCount] = useState(0)
-  const a = useInterval(()=>{
-    setCount(c=>c+1)
-  },1000)
+  const [inputValue, setInputValue] = useState(0)
+  const debounceValue = useDebounce(inputValue, 500)
   return(
-    <>Timer is at {count}</>
+    <>
+    Debounced value is {debounceValue}
+     <input type="text" value={inputValue} onChange={(e)=> setInputValue(e.target.value)} placeholder='search...'/>
+    </>
   )
 }
 
